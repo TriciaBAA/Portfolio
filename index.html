@@ -90,13 +90,14 @@
         //Shrink the whole group throughout the scroll
         .to("#hero-group", {
             scale: 0.3,
+            yPercent: -120,
             duration: 1,
             ease: "none" 
         }, 0)
 
         .to("#introduction", {
             opacity: 1,
-            y: 0,
+            y: -50,
             duration: 0.3
         }, "-=0.2");
     </script>
