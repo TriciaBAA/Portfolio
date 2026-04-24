@@ -1,0 +1,128 @@
+    :root {
+        --c-bg: #fff;
+        --c-text: #000;
+        --c-red: #fe0015;
+    }
+
+    body {
+        background-color: var(--c-bg);
+        color: var(--c-text);
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        font-family: Suisse Intl, ten-mincho-antique, sans-serif;
+    }
+
+    html.lenis, html.lenis body {
+    height: auto;
+    }
+
+    .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+    }
+
+    .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+    }
+
+    .lenis.lenis-stopped {
+        overflow: hidden;
+    }
+
+    .lenis.lenis-scrolling iframe {
+        pointer-events: none;
+    }
+
+    /* NAV */
+    #navbar {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding: 0rem;
+        z-index: 1000;
+    }
+
+    #navbar ul {
+        gap: 2rem;
+        list-style: none;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+    }
+
+    #navbar a { text-decoration: none; color: inherit; }
+
+    /* ABOUT */
+    #about {
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+
+    #hero-group {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transform-origin: center center; 
+        will-change: transform;
+    }
+
+    #title {
+        font-size: clamp(5rem, 20vw, 15rem);
+        margin: 0;
+        font-weight: 900;
+        line-height: 0.7;
+        text-transform: uppercase;
+        letter-spacing: -0.06em;
+    }
+
+    #name {
+        position: absolute;
+        top: -3.5rem;
+        right: 0%; 
+        font-size: clamp(1.5rem, 4vw, 3.5rem);
+        font-style: italic;
+        white-space: nowrap;
+        margin: 0;
+        transition: none !important;
+        transform-origin: center center;
+    }
+
+    #quote {
+        position: absolute;
+        bottom: -3.5rem;
+        left: 1%;
+        max-width: 280px;
+        font-size: 1rem;
+        font-style: italic;
+        margin: 0;
+        text-align: left;
+        transition: none !important;
+        transform-origin: center center;
+    }
+
+    #introduction {
+        position: absolute;
+        bottom: 10%;
+        max-width: 600px;
+        text-align: center;
+        padding: 0 2rem;
+        opacity: 0;
+        transform: translateY(30px);
+        line-height: 1.6;
+    }
+
+    /* PROJECTS */
+    #projects {
+        height: 100vh;
+        background: #fff;
+    }
+
+    /* CONTACT */
