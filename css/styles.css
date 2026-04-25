@@ -145,4 +145,43 @@
         background: #fff;
     }
 
+    #image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    #image-container img {
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 10px;
+    }
+
+    figure {
+        display: flex;
+        flex-direction: row-reverse; 
+        align-items: flex-start;       
+        margin: 0;
+        gap: 0px;
+        transition: transform 0.5s ease; /*ease out*/                   
+    }
+
+    figcaption {
+        writing-mode: vertical-rl; 
+        transform: rotate(180deg);
+        white-space: nowrap;
+        gap: 0;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.1rem;
+    }
+
+    figure:hover {
+        transform: scale(1.05);
+        transition: transform 0.5s ease; /*ease in*/
+    }
+
     /* CONTACT */
