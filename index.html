@@ -66,12 +66,22 @@
             smoothWheel: true,
             orientation: 'vertical',
         });
+        
+        //Initialize Lenis for overlay
+        const overlayLenis = new Lenis({
+            wrapper: document.querySelector('#project-overlay'),
+            content: document.querySelector('#overlay-content'),
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+        });
 
         //ScrollTrigger to recognize Lenis's smooth scroll
         lenis.on('scroll', ScrollTrigger.update);
 
         function raf(time) {
             lenis.raf(time);
+            overlayLenis.raf(time);
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
@@ -140,6 +150,8 @@
                     overlayContent.appendChild(newImg);
                 });
 
+                overlayContent.style.height = (projectImages.length * 100) + "vh";
+
                 overlay.setAttribute('data-lenis-prevent', 'true');
 
                 overlay.style.display = 'block';
@@ -150,9 +162,7 @@
                     ease: "power2.out",
                     onComplete: () => {
                         const targetScrollY = window.innerHeight * index;
-                        overlay.scrollTo({
-                            top: targetScrollY,
-                            behavior: 'auto'
+                        overlayLenis.scrollTo(window.innerHeight * index, { immediate: true
                         });
                     }
                 });
