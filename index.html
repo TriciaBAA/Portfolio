@@ -52,6 +52,12 @@
         </div>
     </section>
 
+    <!-- for the project overlay (when clicked) -->
+    <div id="project-overlay">
+        <button id="close-overlay">✕</button>
+        <div id="overlay-content"></div>
+    </div>
+
     <script>
         //Initialize Lenis (Glide Engine)
         const lenis = new Lenis({
@@ -114,6 +120,59 @@
             y: -50,
             duration: 0.3
         }, "-=0.2");
+
+        //for projects overlay
+        const overlay = document.querySelector('#project-overlay');
+        const overlayContent = document.querySelector('#overlay-content');
+        const closeBtn = document.querySelector('#close-overlay');
+        const projectImages = document.querySelectorAll('#image-container img');
+
+        // OPEN OVERLAY
+        projectImages.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                overlayContent.innerHTML = '';
+                
+                // Add ALL images in order
+                projectImages.forEach(projectImg => {
+                    const newImg = document.createElement('img');
+                    newImg.src = projectImg.src;
+                    newImg.className = 'full-project-img';
+                    overlayContent.appendChild(newImg);
+                });
+
+                overlay.setAttribute('data-lenis-prevent', 'true');
+
+                overlay.style.display = 'block';
+                
+                gsap.to(overlay, { 
+                    opacity: 1, 
+                    duration: 0.5, 
+                    ease: "power2.out",
+                    onComplete: () => {
+                        const targetScrollY = window.innerHeight * index;
+                        overlay.scrollTo({
+                            top: targetScrollY,
+                            behavior: 'auto'
+                        });
+                    }
+                });
+                
+                lenis.stop(); 
+            });
+        });
+
+        // CLOSE OVERLAY
+        closeBtn.addEventListener('click', () => {
+            gsap.to(overlay, { 
+                opacity: 0, 
+                duration: 0.5, 
+                onComplete: () => {
+                    overlay.style.display = 'none';
+                    overlay.scrollTop = 0; // Reset 
+                    lenis.start(); 
+                } 
+            });
+        });
     </script>
 </body>
 </html>
